@@ -1,10 +1,10 @@
-package control;
+package cinema.control;
 
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import service.SessionService;
+import cinema.service.SessionService;
 
 @ThreadSafe
 @Controller
@@ -16,9 +16,11 @@ public class SessionController {
         this.sessionService = sessionService;
     }
 
-    @GetMapping
+    @GetMapping("/cinemaSessions")
     public String sessions(Model model) {
-        model.addAttribute("sessions", sessionService.findAll());
-        return "sessions";
+        model.addAttribute("cinemaSessions", sessionService.findAll());
+        return "cinemaSessions";
     }
+
+
 }

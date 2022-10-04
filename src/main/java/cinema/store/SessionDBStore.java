@@ -1,6 +1,6 @@
-package store;
+package cinema.store;
 
-import model.Session;
+import cinema.model.Session;
 import net.jcip.annotations.ThreadSafe;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
@@ -17,6 +17,8 @@ import java.util.List;
 @Repository
 public class SessionDBStore {
 
+    private final static String ADD_SESSIONS = "insert into sessions(name) values('DetourMortel'), ('Matrix'), ('PulpFiction')";
+
     private final static String FIND_ALL = "SELECT * FROM sessions";
 
     private static final Logger LOG
@@ -26,6 +28,8 @@ public class SessionDBStore {
 
     public SessionDBStore(BasicDataSource pool) {
         this.pool = pool;
+
+        addSessions();
     }
 
     public List<Session> findAll() {
@@ -46,5 +50,16 @@ public class SessionDBStore {
             LOG.error("Exception in log example", e);
         }
         return sessions;
+    }
+
+    private void addSessions() {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement(
+                     ADD_SESSIONS
+             )) {
+            ps.execute();
+        } catch (Exception e) {
+            LOG.error("Exception in log example", e);
+        }
     }
 }

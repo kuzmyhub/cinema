@@ -1,9 +1,9 @@
-package service;
+package cinema.service;
 
-import model.Session;
+import cinema.model.Session;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
-import store.SessionDBStore;
+import cinema.store.SessionDBStore;
 
 import java.util.List;
 

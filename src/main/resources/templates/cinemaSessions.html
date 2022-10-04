@@ -24,14 +24,20 @@
     </nav>
     <table border="1" style="display: inline-block;">
         <thead>
-        <tr th:each="session: ${sessions}">
-            <th>
-                <button type="submit" name="name" value=${session.name} class="btn btn-primary">
-                    <img src = "posters/${session.name}.jpg" alt = "session" width="200">
-                </button>
-            </th>
+        <tr>
+            <th scope="col">Выберете сеанс</th>
         </tr>
         </thead>
+        <tbody>
+        <tr th:each="cinemaSession: ${cinemaSessions}">
+            <td>
+                <button type="submit" name="name" value=${cinemaSession.id} class="btn btn-primary">
+                    <img th:src="@{${'images/' + cinemaSession.name + '.jpg'}}" alt="poster" width="200">
+                </button>
+            </td>
+        </tr>
+        </thead>
+        </tbody>
     </table>
 </div>
 </body>

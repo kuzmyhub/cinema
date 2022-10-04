@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @ThreadSafe
 @Repository
@@ -20,6 +21,8 @@ public class SessionDBStore {
     private final static String ADD_SESSIONS = "insert into sessions(name) values('DetourMortel'), ('Matrix'), ('PulpFiction')";
 
     private final static String FIND_ALL = "SELECT * FROM sessions";
+
+    private final static String FIND_BY_ID = "SELECT name FROM sessions WHERE id = (?)";
 
     private static final Logger LOG
             = LoggerFactory.getLogger(SessionDBStore.class.getName());
@@ -50,6 +53,24 @@ public class SessionDBStore {
             LOG.error("Exception in log example", e);
         }
         return sessions;
+    }
+
+    public Optional<Session> findById(int id) {
+        try (Connection cn = pool.getConnection();
+        PreparedStatement ps = cn.prepareStatement(FIND_BY_ID)) {
+            ps.setInt(1, id);
+            try (ResultSet it = ps.executeQuery()) {
+                if (it.next()) {
+                    return Optional.of(new Session(
+                            id,
+                            it.getString("name")
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            LOG.error("Exception in log example", e);
+        }
+        return Optional.empty();
     }
 
     private void addSessions() {

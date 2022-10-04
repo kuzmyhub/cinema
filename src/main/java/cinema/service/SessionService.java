@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import cinema.store.SessionDBStore;
 
 import java.util.List;
+import java.util.Optional;
 
 @ThreadSafe
 @Service
@@ -19,5 +20,9 @@ public class SessionService {
 
     public List<Session> findAll() {
         return store.findAll();
+    }
+
+    public Optional<Session> findById(int id) {
+        return store.findById(id);
     }
 }

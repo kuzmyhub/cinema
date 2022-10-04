@@ -9,6 +9,9 @@ public class Session implements Serializable {
 
     private String name;
 
+    public Session() {
+    }
+
     public Session(int id) {
     }
 

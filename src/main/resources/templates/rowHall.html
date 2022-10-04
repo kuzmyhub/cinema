@@ -19,28 +19,24 @@
 </head>
 <body>
 <div class="container pt-3" style="text-align: center;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Кинотеатр</a>
-    </nav>
-    <table border="1" style="display: inline-block;">
-        <thead>
-        <tr>
-            <th scope="col">Выберете сеанс</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="cinemaSession: ${cinemaSessions}">
-            <td>
-                <form th:action="@{/choseSession}">
-                    <button type="submit" name="name" th:value=${cinemaSession.id} class="btn btn-primary">
-                        <img th:src="@{${'images/' + cinemaSession.name + '.jpg'}}" alt="poster" width="200">
-                    </button>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Выберите ряд
+            </div>
+            <div class="card-body">
+                <form th:action="@{/choseRowHall}" method="POST">
+                    <div class="form-group">
+                        <label for="rowHall">Ряд</label>
+                        <select class="form-control" id="rowHall" name="rowHall">
+                            <option th:each="rowHall : ${rowsHall}" th:value="rowHall" th:text="rowHall"></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
                 </form>
-            </td>
-        </tr>
-        </thead>
-        </tbody>
-    </table>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

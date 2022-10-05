@@ -46,8 +46,6 @@ public class SessionController {
     public String rowHall(@ModelAttribute("rowHall") String rowHall,
                           HttpSession session) {
         session.setAttribute("rowHall", rowHall);
-        System.out.println(session.getAttribute("cinemaSession"));
-        System.out.println(session.getAttribute("rowHall"));
         return "cellHall";
     }
 
@@ -55,9 +53,6 @@ public class SessionController {
     public String cellHall(@ModelAttribute("cellHall") String cellHall,
                            HttpSession session) {
         session.setAttribute("cellHall", cellHall);
-        System.out.println(session.getAttribute("cinemaSession"));
-        System.out.println(session.getAttribute("rowHall"));
-        System.out.println(session.getAttribute("cellHall"));
         return "redirect:/sessionInformation";
     }
 

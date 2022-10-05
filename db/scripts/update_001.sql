@@ -11,3 +11,10 @@ CREATE TABLE ticket (
     user_id INT NOT NULL REFERENCES users(id),
     UNIQUE (session_id, pos_row, cell)
 );
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR NOT NULL,
+  email VARCHAR NOT NULL UNIQUE,
+  phone VARCHAR NOT NULL UNIQUE
+);

@@ -19,35 +19,28 @@
 </head>
 <body>
 <div class="container pt-3" style="text-align: center;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Кинотеатр</a>
-    </nav>
-    <p align="center">ВАШ ВЫБОР</p>
-    <table border="1" style="display: inline-block;">
-        <thead>
-        <tr>
-            <th scope="col">Сеанс фильма</th>
-            <th scope="col">Ряд</th>
-            <th scope="col">Место</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td th:text="${cinemaSession}"></td>
-            <td th:text="${rowHall}"></td>
-            <td th:text="${cellHall}"></td>
-        </tr>
-        </thead>
-        </tbody>
-    </table>
-</div>
-<div style="text-align: center;">
-    <form th:action="@{/formFillingData}" style="display:inline;">
-        <button type="submit" class="btn btn-primary">Купить</button>
-    </form>
-    <form th:action="@{/cinemaSessions}" style="display:inline;">
-        <button type="submit" class="btn btn-primary">Отменить</button>
-    </form>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                <p>Заполните все поля</p>
+                <p>Билет будет выслан на указанные email и номер телефона</p>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/filling}" method="POST">
+                    <input type="hidden" name="id" value="0"/>
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" class="form-control" name="username" id="name">
+                        <label for="name">Email</label>
+                        <input type="text" class="form-control" name="email" id="email">
+                        <label for="name">Номер телефона</label>
+                        <input type="text" class="form-control" name="phone" id="phone">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Далее</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

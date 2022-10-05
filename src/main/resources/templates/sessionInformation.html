@@ -22,25 +22,28 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Кинотеатр</a>
     </nav>
+    <p align="center">ВАШ ВЫБОР</p>
     <table border="1" style="display: inline-block;">
         <thead>
         <tr>
-            <th scope="col">Выберете сеанс</th>
+            <th scope="col">Сеанс фильма</th>
+            <th scope="col">Ряд</th>
+            <th scope="col">Место</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="cinemaSession: ${cinemaSessions}">
-            <td>
-                <form th:action="@{/choseSession}">
-                    <button type="submit" name="id" th:value=${cinemaSession.id} class="btn btn-primary">
-                        <img th:src="@{${'images/' + cinemaSession.name + '.jpg'}}" alt="poster" width="200">
-                    </button>
-                </form>
-            </td>
+        <tr>
+            <td th:text="${cinemaSession}"></td>
+            <td th:text="${rowHall}"></td>
+            <td th:text="${cellHall}"></td>
         </tr>
         </thead>
         </tbody>
     </table>
+</div>
+<div style="text-align: center;">
+    <button type="submit" class="btn btn-primary">Отменить</button>
+    <button type="submit" class="btn btn-primary">Купить</button>
 </div>
 </body>
 </html>

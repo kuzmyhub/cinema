@@ -28,10 +28,10 @@
                 Выберите ряд
             </div>
             <div class="card-body">
-                <form th:action="@{/choseRowHall}" method="POST">
+                <form th:action="@{/choseCellHall}" method="POST">
                     <div class="form-group">
-                        <label>Ряд</label>
-                        <select class="form-control" id="rowHall" name="rowHall">
+                        <label>Место</label>
+                        <select class="form-control" id="cellHall" name="cellHall">
                             <option th:value="1" th:text="1"></option>
                             <option th:value="2" th:text="2"></option>
                             <option th:value="3" th:text="3"></option>
@@ -39,9 +39,16 @@
                             <option th:value="5" th:text="5"></option>
                             <option th:value="6" th:text="6"></option>
                             <option th:value="7" th:text="7"></option>
+                            <option th:value="8" th:text="8"></option>
+                            <option th:value="9" th:text="9"></option>
+                            <option th:value="10" th:text="10"></option>
+                            <option th:value="11" th:text="11"></option>
+                            <option th:value="12" th:text="12"></option>
+                            <option th:value="13" th:text="13"></option>
+                            <option th:value="14" th:text="14"></option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Далее</button>
+                    <button type="submit" class="btn btn-primary mt-3">Забронировать</button>
                 </form>
             </div>
         </div>

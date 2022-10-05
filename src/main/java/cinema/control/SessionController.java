@@ -1,9 +1,11 @@
 package cinema.control;
 
 import cinema.model.Session;
+import jdk.swing.interop.SwingInterOpUtils;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import cinema.service.SessionService;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,9 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @ThreadSafe
 @Controller
@@ -37,21 +37,37 @@ public class SessionController {
         HttpSession session = req.getSession();
         Optional<Session> chosenSession
                 = sessionService.findById(cinemaSession.getId());
-        if (chosenSession.isPresent()) {
-            session.setAttribute("cinemaSession",
-                    sessionService.findById(cinemaSession.getId()));
-        }
-        System.out.println(session.getAttribute("cinemaSession"));
-        System.out.println(cinemaSession);
+        chosenSession.ifPresent(value -> session.setAttribute("cinemaSession",
+                value));
         return "rowHall";
     }
 
     @PostMapping("/choseRowHall")
-    public String rowHall() {
-        List<String> rowsHall = new ArrayList<>();
-        for (int i = 1; i <= 7; i++) {
-            rowsHall.add(String.valueOf(i));
-        }
-        return "";
+    public String rowHall(@ModelAttribute("rowHall") String rowHall,
+                          HttpSession session) {
+        session.setAttribute("rowHall", rowHall);
+        System.out.println(session.getAttribute("cinemaSession"));
+        System.out.println(session.getAttribute("rowHall"));
+        return "cellHall";
+    }
+
+    @PostMapping("/choseCellHall")
+    public String cellHall(@ModelAttribute("cellHall") String cellHall,
+                           HttpSession session) {
+        session.setAttribute("cellHall", cellHall);
+        System.out.println(session.getAttribute("cinemaSession"));
+        System.out.println(session.getAttribute("rowHall"));
+        System.out.println(session.getAttribute("cellHall"));
+        return "redirect:/sessionInformation";
+    }
+
+    @GetMapping("/sessionInformation")
+    public String sessionInformation(Model model, HttpSession session) {
+        Map<String, String> attributes = new HashMap<>();
+        attributes.put("cinemaSession", ((Session) session.getAttribute("cinemaSession")).getName());
+        attributes.put("rowHall", (String) session.getAttribute("rowHall"));
+        attributes.put("cellHall", (String) session.getAttribute("cellHall"));
+        model.addAllAttributes(attributes);
+        return "sessionInformation";
     }
 }

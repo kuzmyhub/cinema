@@ -6,6 +6,8 @@ import cinema.store.UserDBStore;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @ThreadSafe
 @Service
 public class UserService {
@@ -16,7 +18,7 @@ public class UserService {
         this.store = store;
     }
 
-    public User addUser(User user) {
+    public Optional<User> addUser(User user) {
         return store.addUser(user);
     }
 }

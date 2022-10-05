@@ -18,6 +18,13 @@ public class Ticket implements Serializable {
     public Ticket() {
     }
 
+    public Ticket(int sessionId, int posRow, int cell, int userId) {
+        this.sessionId = sessionId;
+        this.posRow = posRow;
+        this.cell = cell;
+        this.userId = userId;
+    }
+
     public Ticket(int id, int sessionId, int posRow, int cell, int userId) {
         this.id = id;
         this.sessionId = sessionId;

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import cinema.service.SessionService;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,8 +27,10 @@ public class SessionController {
     }
 
     @GetMapping("/cinemaSessions")
-    public String sessions(Model model) {
+    public String sessions(Model model,
+                           @RequestParam(name = "fail", required = false) Boolean fail) {
         model.addAttribute("cinemaSessions", sessionService.findAll());
+        model.addAttribute("fail", fail != null);
         return "cinemaSessions";
     }
 

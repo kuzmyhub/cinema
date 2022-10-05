@@ -7,15 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.Optional;
 
 @Repository
 @ThreadSafe
 public class UserDBStore {
 
-    private static final String ADD = "INSERT INTO users(username, email, phone) VALUES (?), (?), (?)";
+    private static final String ADD = "INSERT INTO users(username, email, phone) VALUES (?, ?, ?)";
 
     private static final Logger LOG
             = LoggerFactory.getLogger(SessionDBStore.class.getName());
@@ -26,7 +25,7 @@ public class UserDBStore {
         this.pool = pool;
     }
 
-    public User addUser(User user) {
+    public Optional<User> addUser(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(ADD,
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -36,12 +35,13 @@ public class UserDBStore {
             ps.execute();
             try (ResultSet it = ps.getGeneratedKeys()) {
                 if (it.next()) {
-                    user.setId(it.getInt(1));
+                    user.setId(it.getInt("id"));
+                    return Optional.of(user);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            LOG.error("Exception in log example", e);
         }
-        return user;
+        return Optional.empty();
     }
 }

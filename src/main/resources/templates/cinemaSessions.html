@@ -22,6 +22,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Кинотеатр</a>
     </nav>
+    <div th:if="${fail}" class="alert alert-danger" role="alert">
+        Место уже занято, выберите другое место
+    </div>
     <table border="1" style="display: inline-block;">
         <thead>
         <tr>

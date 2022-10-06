@@ -32,7 +32,7 @@ public class TicketController {
                 ((User) session.getAttribute("user")).getId()
         ));
         if (purchasedTicket.isEmpty()) {
-            return "redirect:/cinemaSession?fail=true";
+            return "redirect:/cinemaSessions?fail=true";
         }
         return "redirect:/formPurchasedTicket";
     }
@@ -42,6 +42,7 @@ public class TicketController {
         model.addAttribute("cinemaSession", session.getAttribute("cinemaSession"));
         model.addAttribute("cellHall", session.getAttribute("cellHall"));
         model.addAttribute("rowHall", session.getAttribute("rowHall"));
+        model.addAttribute("user", session.getAttribute("user"));
         return "formPurchasedTicket";
     }
 }

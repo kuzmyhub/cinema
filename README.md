@@ -13,4 +13,42 @@
 
 В случае если желаемое место на сеансе уже занято, пользователю предоставляется возможность выбрать другое место.
 
+##Используемый стек технологий
 
+1. Spring boot
+2. Thymeleaf
+3. JDBC
+4. Liquibase
+5. PostgreSQL
+
+##Для запуска проекта понадобятся
+
+1. JDK 17
+2. Apache Maven 3.8.5
+3. PostgreSQL 14
+4. Web browser
+
+##Интерфейс сайта
+
+###Главная страница
+
+![jmap1](website/homePage.png)
+
+###Выбор ряда
+
+![jmap1](website/rowSelection.png)
+
+###Выбор места
+
+![jmap1](website/placeSelection.png)
+
+###Предпросмотр билета
+
+![jmap1](website/ticketPreview.png)
+
+###Заполнение информации о покупателе
+
+![jmap1](website/userInformation.png)
+
+###Информация о покупке
+![jmap1](website/purchaseInformation.png)

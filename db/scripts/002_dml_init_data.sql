@@ -1,0 +1,1 @@
+insert into sessions(name) values('DetourMortel'), ('Matrix'), ('PulpFiction');

@@ -18,8 +18,6 @@ import java.util.Optional;
 @Repository
 public class SessionDBStore {
 
-    private final static String ADD_SESSIONS = "insert into sessions(name) values('DetourMortel'), ('Matrix'), ('PulpFiction')";
-
     private final static String FIND_ALL = "SELECT * FROM sessions";
 
     private final static String FIND_BY_ID = "SELECT name FROM sessions WHERE id = (?)";
@@ -31,8 +29,6 @@ public class SessionDBStore {
 
     public SessionDBStore(BasicDataSource pool) {
         this.pool = pool;
-
-        addSessions();
     }
 
     public List<Session> findAll() {
@@ -71,16 +67,5 @@ public class SessionDBStore {
             LOG.error("Exception in log example", e);
         }
         return Optional.empty();
-    }
-
-    private void addSessions() {
-        try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement(
-                     ADD_SESSIONS
-             )) {
-            ps.execute();
-        } catch (Exception e) {
-            LOG.error("Exception in log example", e);
-        }
     }
 }

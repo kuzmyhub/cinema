@@ -3,6 +3,13 @@ CREATE TABLE sessions (
   name text
 );
 
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR NOT NULL,
+  email VARCHAR NOT NULL UNIQUE,
+  phone VARCHAR NOT NULL UNIQUE
+);
+
 CREATE TABLE ticket (
     id SERIAL PRIMARY KEY,
     session_id INT NOT NULL REFERENCES sessions(id),
@@ -12,9 +19,3 @@ CREATE TABLE ticket (
     UNIQUE (session_id, pos_row, cell)
 );
 
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  username VARCHAR NOT NULL,
-  email VARCHAR NOT NULL UNIQUE,
-  phone VARCHAR NOT NULL UNIQUE
-);

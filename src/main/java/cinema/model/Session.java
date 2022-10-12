@@ -3,7 +3,7 @@ package cinema.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Session implements Serializable {
+public class Session {
 
     private int id;
 

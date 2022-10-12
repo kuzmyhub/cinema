@@ -3,7 +3,7 @@ package cinema.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Ticket implements Serializable {
+public class Ticket {
 
     private int id;
 

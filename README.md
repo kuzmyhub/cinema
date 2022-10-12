@@ -1,11 +1,11 @@
-#Проект "Кинотеатр"
+# Проект "Кинотеатр"
 
-##Задачи
+## Задачи
 
 1. Создание web-приложения на языке Java;
 2. Создание структуры web-приложения на основе полученных ранее знаний и опыте.
 
-##Описание приложения
+## Описание приложения
 
 В системе используются три модели: Пользователи, Сеансы и Билеты.
 
@@ -13,42 +13,43 @@
 
 В случае если желаемое место на сеансе уже занято, пользователю предоставляется возможность выбрать другое место.
 
-##Используемый стек технологий
+## Используемый стек технологий
 
-1. Spring boot
-2. Thymeleaf
-3. JDBC
-4. Liquibase
-5. PostgreSQL
+1. Java 17
+2. Spring boot 2.5.2
+3. Thymeleaf
+4. Spring JDBC 5.3.23 
+5. Liquibase 4.15.0
+6. PostgreSQL 14
 
-##Для запуска проекта понадобятся
+## Для запуска проекта понадобятся
 
 1. JDK 17
 2. Apache Maven 3.8.5
 3. PostgreSQL 14
 4. Web browser
 
-##Интерфейс сайта
+## Интерфейс сайта
 
-###Главная страница
+### Главная страница
 
-![jmap1](website/homePage.png)
+![jmap1](img/homePage.png)
 
-###Выбор ряда
+### Выбор ряда
 
-![jmap1](website/rowSelection.png)
+![jmap1](img/rowSelection.png)
 
-###Выбор места
+### Выбор места
 
-![jmap1](website/placeSelection.png)
+![jmap1](img/placeSelection.png)
 
-###Предпросмотр билета
+### Предпросмотр билета
 
-![jmap1](website/ticketPreview.png)
+![jmap1](img/ticketPreview.png)
 
-###Заполнение информации о покупателе
+### Заполнение информации о покупателе
 
-![jmap1](website/userInformation.png)
+![jmap1](img/userInformation.png)
 
 ###Информация о покупке
-![jmap1](website/purchaseInformation.png)
+![jmap1](img/purchaseInformation.png)

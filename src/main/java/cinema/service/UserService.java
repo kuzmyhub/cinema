@@ -1,7 +1,6 @@
 package cinema.service;
 
 import cinema.model.User;
-import cinema.store.SessionDBStore;
 import cinema.store.UserDBStore;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;

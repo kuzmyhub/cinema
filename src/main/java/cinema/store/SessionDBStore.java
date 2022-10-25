@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,10 +39,7 @@ public class SessionDBStore {
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
                     sessions.add(
-                            new Session(
-                                    it.getInt("id"),
-                                    it.getString("name")
-                            )
+                            createSession(it)
                     );
                 }
             }
@@ -67,5 +65,12 @@ public class SessionDBStore {
             LOG.error("Exception in log example", e);
         }
         return Optional.empty();
+    }
+
+    private Session createSession(ResultSet it) throws SQLException {
+        return new Session(
+                it.getInt("id"),
+                it.getString("name")
+        );
     }
 }

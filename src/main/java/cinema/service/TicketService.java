@@ -1,6 +1,5 @@
 package cinema.service;
 
-
 import cinema.model.Ticket;
 import cinema.store.TicketDBStore;
 import net.jcip.annotations.ThreadSafe;

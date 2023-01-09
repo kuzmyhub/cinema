@@ -66,3 +66,9 @@
 ### Информация о покупке
 
 ![jmap1](img/purchaseInformation.png)
+
+## Контакты
+
+Telegram: @smith_serg
+
+Email: kuznetsov.s.i@bk.ru
